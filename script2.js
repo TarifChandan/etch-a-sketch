@@ -68,7 +68,7 @@ function createInteractiveGrid(totalSketchCells, gridSize, currentLastRowCell) {
       currentLastRowCell += 1;
     }
 
-    let darkenOpacity = 0;
+    let darknessLevel = 0;
 
     sketchCell.addEventListener("mouseenter", (e) => {
       if (!isColorModeActive) {
@@ -81,7 +81,7 @@ function createInteractiveGrid(totalSketchCells, gridSize, currentLastRowCell) {
           let randomColor = GenerateRandomColor();
           sketchCell.style.backgroundColor = randomColor;
         } else {
-          darkenOpacity = Number((darkenOpacity + 0.1).toFixed(1)); // increase darkenOpacity by 0.1
+          darknessLevel = Number((darknessLevel + 0.1).toFixed(1)); // increase darknessLevel by 0.1
 
           if (sketchCell.children.length > 0) {
             if (
@@ -89,16 +89,16 @@ function createInteractiveGrid(totalSketchCells, gridSize, currentLastRowCell) {
             ) {
               let randomColor = GenerateRandomColor();
               sketchCell.style.backgroundColor = randomColor;
-              darkenOpacity = 0;
+              darknessLevel = 0;
             }
 
-            sketchCell.children[0].style.backgroundColor = `rgba(0, 0, 0, ${darkenOpacity})`;
+            sketchCell.children[0].style.backgroundColor = `rgba(0, 0, 0, ${darknessLevel})`;
           } else {
-            let darkeningOverlay = document.createElement("div");
-            darkeningOverlay.style.width = "100%";
-            darkeningOverlay.style.height = "100%";
-            darkeningOverlay.style.backgroundColor = `rgba(0, 0, 0, ${darkenOpacity})`;
-            sketchCell.appendChild(darkeningOverlay);
+            let darkOverlay = document.createElement("div");
+            darkOverlay.style.width = "100%";
+            darkOverlay.style.height = "100%";
+            darkOverlay.style.backgroundColor = `rgba(0, 0, 0, ${darknessLevel})`;
+            sketchCell.appendChild(darkOverlay);
           }
         }
       }
